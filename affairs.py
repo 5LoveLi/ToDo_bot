@@ -16,8 +16,6 @@ list_btn = types.KeyboardButton('Показать список')
 markup.row(add_btn, del_btn)
 markup.row(complete_btn, list_btn)
 
-#@bot.callback_query_handler(func=lambda call: True)
-###    logger.info(call)
 
 @bot.message_handler(content_types=['text'])
 def send_welcome(message):
@@ -73,15 +71,6 @@ def task_complete(message):
         bot.send_message(message.chat.id, 'Задача ' + message.text + ' выполнена!')
     else:
         bot.send_message(message.chat.id, 'У вас нет такой задачи!', reply_markup=markup)
-
-
-# def redirect(task):
-#     answer = bot.reply_to(task.chat.id, 'Хотите удалить ее?', reply_markup=markp)
-#     print(answer)
-#     if answer.text == 'Да':
-#         task_delete(task)
-#     elif answer.text == "Нет":
-#         bot.send_message(task.chat.id, ' Ваше право)', reply_markup=markup)
 
 
 def show_list(chat_id):
