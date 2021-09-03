@@ -7,12 +7,6 @@ bot = telebot.TeleBot('1828272395:AAHcVtHnSQb6UFx3jZd0_uMcmptmXrHLeoU')
 
 flag = '✔️'
 todo_list = []
-last_completed = 'a'
-
-markp = types.ReplyKeyboardMarkup()
-yes_btn = types.KeyboardButton('Да')
-no_btn = types.KeyboardButton('Нет')
-markp.row(yes_btn, no_btn)
 
 markup = types.ReplyKeyboardMarkup()
 add_btn = types.KeyboardButton('Добавить')
@@ -37,7 +31,6 @@ def send_welcome(message):
     elif message.text == "Выполнено":
         send = bot.send_message(chat_id, "Какую задачу вы выполнили?")
         bot.register_next_step_handler(send, task_complete)
-        last_completed = send
         show_list(chat_id)
     elif message.text == "Показать список":
         send = bot.send_message(chat_id, 'Список ваших задач:', reply_markup=markup)
@@ -78,11 +71,6 @@ def task_complete(message):
         task = todo_list.index(message.text)
         todo_list[task] = message.text + flag
         bot.send_message(message.chat.id, 'Задача ' + message.text + ' выполнена!')
-        # answer = bot.add_poll_answer_handler(message.chat.id, 'Хотите удалить ее?', reply_markup=markp)
-        # if answer.text == 'Да':
-        #     task_delete(task)
-        # elif answer.text == "Нет":
-        #     bot.send_message(task.chat.id, ' Ваше право)', reply_markup=markup)
     else:
         bot.send_message(message.chat.id, 'У вас нет такой задачи!', reply_markup=markup)
 
