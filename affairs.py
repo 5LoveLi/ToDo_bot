@@ -3,8 +3,6 @@ import telebot
 from telebot import types
 
 
-bot = telebot.TeleBot('1828272395:AAHcVtHnSQb6UFx3jZd0_uMcmptmXrHLeoU')
-
 flag = '✔️'
 todo_list = []
 
